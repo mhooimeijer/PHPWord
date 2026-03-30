@@ -948,8 +948,10 @@ class TemplateProcessor
         $matches = [];
         $escapedMacroOpeningChars = preg_quote(self::$macroOpeningChars);
         $escapedMacroClosingChars = preg_quote(self::$macroClosingChars);
+     	$pattern ='/(<w:t|p.*>' . $escapedMacroOpeningChars . $blockname . $escapedMacroClosingChars . '<\/w:.*?t|p>)(.*?)(<w:t|p.*' . $escapedMacroOpeningChars . '\/' . $blockname . $escapedMacroClosingChars . '<\/w:.*?t|p>)/is';
+
         preg_match(
-            '/(<\?xml.*)(<w:p.*>' . $escapedMacroOpeningChars . $blockname . $escapedMacroClosingChars . '<\/w:.*?p>)(.*)(<w:p.*' . $escapedMacroOpeningChars . '\/' . $blockname . $escapedMacroClosingChars . '<\/w:.*?p>)/is',
+            $pattern,
             $this->tempDocumentMainPart,
             $matches
         );
